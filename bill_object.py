@@ -21,15 +21,23 @@ class Bill:
         self.file_name = ''
 
     def update_attribute(self, attribute, input):
-        setattr(self, attribute, input)
+        if attribute == 'measure':
+            if str(input.upper()) == 'YES':
+                self.measure = 125
+            else:
+                pass
+        elif attribute == 'receipts':
+            self.receipts = input
+        else:
+            setattr(self, attribute, input)
     
     def make_totals(self):
-        self.windows_total = self.windows * 125
-        self.entry_doors_total = self.entry_doors * 300
-        self.french_doors_total = self.french_doors * 400
-        self.sgd_total = self.sgd * 300
-        self.sgd_extra_total = self.sgd_extra * 50
-        self.extra_labor_total = self.extra_labor * 80 
+        self.windows_total = int(self.windows) * 125
+        self.entry_doors_total = int(self.entry_doors) * 300
+        self.french_doors_total = int(self.french_doors) * 400
+        self.sgd_total = int(self.sgd) * 300
+        self.sgd_extra_total = int(self.sgd_extra) * 50
+        self.extra_labor_total = int(self.extra_labor) * 80 
     
     def add_receipts(self, input):
         self.receipts = float(input)
@@ -46,14 +54,14 @@ class Bill:
 
     def get_bill_total(self):
         self.make_totals()
-        self.total = self.windows_total + \
-            self.entry_doors_total + \
-            self.french_doors_total + \
-            self.sgd_total + \
-            self.sgd_extra_total + \
-            self.extra_labor_total + \
-            self.receipts + \
-            self.measure
+        self.total = float(self.receipts) + \
+            int(self.windows_total) + \
+            int(self.entry_doors_total) + \
+            int(self.french_doors_total) + \
+            int(self.sgd_total) + \
+            int(self.sgd_extra_total) + \
+            int(self.extra_labor_total) + \
+            int(self.measure)
         return self.total
     
     def create_row(self, col_1, col_2, col_3, pdf, top, offset, y):
@@ -64,7 +72,6 @@ class Bill:
         pdf.x = offset + 40
         pdf.y = top + y
         pdf.multi_cell(40, 10, str(col_3), 1, 0)
-
 
 
     
@@ -100,21 +107,13 @@ class Bill:
 
         pdf.output(self.file_name)
 
-bill = Bill()
-
-
-bill.update_attribute('windows', 12)
-bill.update_attribute('entry_doors', 2)
-bill.update_attribute('french_doors', 1)
-bill.update_attribute('sgd', 1)
-bill.update_attribute('sgd_extra', 0)
-bill.update_attribute('extra_labor', 2)
-bill.add_receipts(58.93)
-bill.is_measure('yes')
-bill.add_name('customer')
-bill.update_attribute('windows', 10)
-bill.get_bill_total()
-
-print()
-
-bill.generate_bill()
+class User:
+    def __init__(self, user, password):
+        self.user = user
+        self.password = password
+    
+    def update_user(self, username):
+        self.user = username
+    
+    def update_password(self, password):
+        self.password = password

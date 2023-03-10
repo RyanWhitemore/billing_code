@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head%}
+<title>Billing app</title>
 {%endblock%}
 
 {% block body%}
@@ -10,18 +11,18 @@
 <div>
     <main>
         <form action ='/' method="POST">
-            <label for="num_windows">Number of Windows</label><br>
-            <input type="text" id="num_windows" name="num_windows"><br>
-            <label for="num_doors">Number of Entry Doors</label><br>
-            <input type="text" id="num_doors" name="num_doors"><br>
-            <label for="num_french">Number of French Doors</label><br>
-            <input type="text" id="num_french" name="num_french"><br>
-            <label for="num_sgd">Number of Sliding Glass Doors </label><br>
-            <input type="text" id="num_sgd" name="num_sgd"><br>
-            <label for="num_extra_panel">Number of Extra Sliding Glass Door Panels</label><br>
-            <input type="text" id="num_extra_panel" name="num_extra_panel"><br>
-            <label for="hours_labor">Hours of Extra Labor</label><br>
-            <input type="text" id="hours_labor" name="hours_labor"><br>
+            <label for="windows">Number of Windows</label><br>
+            <input type="text" id="windows" name="windows"><br>
+            <label for="entry_doors">Number of Entry Doors</label><br>
+            <input type="text" id="entry_doors" name="entry_doors"><br>
+            <label for="french_doors">Number of French Doors</label><br>
+            <input type="text" id="french_doors" name="french_doors"><br>
+            <label for="sgd">Number of Sliding Glass Doors </label><br>
+            <input type="text" id="sgd" name="sgd"><br>
+            <label for="sgd_extra">Number of Extra Sliding Glass Door Panels</label><br>
+            <input type="text" id="sgd_extra" name="sgd_extra"><br>
+            <label for="extra_labor">Hours of Extra Labor</label><br>
+            <input type="text" id="extra_labor" name="extra_labor"><br>
             <label for="receipts">Receipts Total</label><br>
             <input type="text" id="receipts" name="receipts"><br>
             <label for="measure">Measure?</label><br>
