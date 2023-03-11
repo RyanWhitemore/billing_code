@@ -1,11 +1,30 @@
 from load_session import load_session
-from flask import Flask, render_template, request, make_response, redirect
+from flask import Flask, render_template, request, make_response, redirect, session
+from flask_session import Session
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+secret_key = os.environ["SECRET_KEY"]
 
 
 
 def insert():
-        session = load_session()
-        cursor = session.cursor()
+        
+        app = Flask(__name__)
+        app.config["SESSION_PERMANENT"] = False
+        app.config["SESSION_TYPE"] = "filesystem"
+        app.config["SECRET_KEY"] = secret_key
+        Session(app)
+
+        user_id = request.cookies.get('user_id')
+
+        if session.get('user_id') != user_id:
+             return redirect('/login')
+
+        connection = load_session()
+        cursor = connection.cursor()
 
         insert_query = """
         INSERT INTO bills (
@@ -23,7 +42,6 @@ def insert():
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         # initialize variables for query from the user input
-        response = request.form
         customer_name = request.form['customer']
         windows = request.form['windows']
         entry_doors = request.form['entry_doors']
@@ -38,7 +56,6 @@ def insert():
             measure = 1
         else:
             measure = 0
-        user_id = request.cookies.get('user_id')
         
         # Set values tuple to pass to cursor.execute
         values = (customer_name,
@@ -53,7 +70,7 @@ def insert():
                   user_id)
         
         cursor.execute(insert_query, values)
-        session.commit()
-        session.close()
+        connection.commit()
+        connection.close()
 
         return redirect('/bills')
