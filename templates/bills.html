@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head%}
+<title>Bills</title>
+{%endblock%}
+
+{% block body%}
+<header>Bills</header>
+<div>
+    <main>
+        <table style="width:50%">
+            <tr>
+                <th>Customer Name</th>
+                <th>Windows</th>
+                <th>Entry doors</th>
+                <th>French doors</th>
+                <th>Sliding glass doors</th>
+                <th>Sliding glass door extra panels</th>
+                <th>Extra labor</th>
+                <th>Receipts</th>
+                <th>Measure</th>
+                <th>Actions</th>
+            </tr>
+            {% for bill in results %}
+                <tr>
+            
+                    <td>{{ bill[9] }}</td>
+                    <td>{{ bill[1] }}</td>
+                    <td>{{ bill[2] }}</td>
+                    <td>{{ bill[3] }}</td>
+                    <td>{{ bill[4] }}</td>
+                    <td>{{ bill[5] }}</td>
+                    <td>{{ bill[6] }}</td>
+                    <td>{{ bill[7] }}</td>
+                    <td>{{ bill[8] }}</td>
+                    <td> 
+                        <a href="/delete/{{bill[0]}}">Delete</a>
+                        <br>
+                        <a href="/download/{{bill[0]}}" download="bill">Download</a>
+                    </td>
+            
+                </tr>
+            {% endfor %}
+        </table>
+    </main>
+</div>
+{%endblock%}
