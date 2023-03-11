@@ -11,13 +11,18 @@ was a great learning experience for me.
 
 ## Technologies in this project
 ---
-Flask - A web framework used in this case to design a billing web app  
-mysql connector python - An api used to make a connection to a database through python  
-flask_bcrypt - A version of bcrypt designed for use with the flask framework to hash passwords and  
-             - check hashed passwords  
-FPDF - A python module used to generate pdf reports  
-bill_object - The python code that I wrote and based this project around, it generates a pdf file  
-            - based on the attributes assigned to the instance of the object  
+Flask 
+- A web framework used in this case to design a billing web app  
+mysql connector python 
+- An api used to make a connection to a database through python  
+flask_bcrypt 
+- A version of bcrypt designed for use with the flask framework to hash passwords and  
+- check hashed passwords  
+FPDF 
+- A python module used to generate pdf reports  
+bill_object 
+- The python code that I wrote and based this project around, it generates a pdf file  
+- based on the attributes assigned to the instance of the object  
 
 ## How the app works
 ---
@@ -48,5 +53,5 @@ here are some things you must do
         -  receipt_total
         -  measure
         -  user_id
-        -  customer_name
+        -  customer_name  
 With those two requirements satisfied the app should function as intended
