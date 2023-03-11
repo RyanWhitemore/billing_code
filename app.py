@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-import mysql.connector as connector
 from login import login as login_function
 from insert import insert
 from get_bills import get_bills
@@ -10,17 +9,6 @@ from download_item import download_item
 # instatiate and configure flask app
 app = Flask(__name__)
 
-
-
-# Define a function to make a connection to the mysql database
-def load_session():
-    connection = connector.connect(user=user,
-                                  password=password,
-                                  host='localhost',
-                                  port=3306,
-                                  database='billing_app_db',
-                                  auth_plugin='mysql_native_password')
-    return connection
 
 
 # Login route

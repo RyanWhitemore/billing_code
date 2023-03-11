@@ -1,9 +1,6 @@
 from flask import Flask, render_template, request, make_response, redirect
 from flask_bcrypt import Bcrypt
-import mysql.connector as connector
 from load_session import load_session
-import os
-from dotenv import load_dotenv
 
 
 def login():
@@ -42,7 +39,7 @@ def login():
         elif request.form['action'] == 'Login':
             # Get username and password from user input
             username = (request.form['username'],)
-            password_hash = str(request.form['password'])
+            password = str(request.form['password'])
 
             # query for information to populate /bills table
             table_query = """
@@ -70,21 +67,23 @@ def login():
             cursor.execute(query, username)
             results = cursor.fetchall()
 
-            password = results[0][0]
-            user_id = str(results[0][1])
+            if results:
+                 
+                password_hash = results[0][0]
+                user_id = str(results[0][1])
 
-            # execute table population query
-            cursor.execute(table_query, (user_id,))
-            table_results = cursor.fetchall()
-            session.close()
+                # execute table population query
+                cursor.execute(table_query, (user_id,))
+                table_results = cursor.fetchall()
+                session.close()
             
-            # Check if password matches password in database
-            if bcrypt.check_password_hash( str(password), password_hash):
+                # Check if password matches password in database
+                if bcrypt.check_password_hash(str(password_hash), password):
                 
-                # Set response to index.html and set user_id cookie for future use
-                resp = make_response(render_template('bills.html', results=table_results))
-                resp.set_cookie('user_id', user_id)
-                return resp
+                    # Set response to index.html and set user_id cookie for future use
+                    resp = make_response(render_template('bills.html', results=table_results))
+                    resp.set_cookie('user_id', user_id)
+                    return resp
             
             else:
                 session.close()
