@@ -11,13 +11,13 @@ was a great learning experience for me.
 
 ## Technologies in this project
 ---
-Flask - A web framework used in this case to design a billing web app\s\s
-mysql connector python - An api used to make a connection to a database through python\s\s
-flask_bcrypt - A version of bcrypt designed for use with the flask framework to hash passwords and\s\s
-             - check hashed passwords\s\s
-FPDF - A python module used to generate pdf reports\s\s
-bill_object - The python code that I wrote and based this project around, it generates a pdf file\s\s
-            - based on the attributes assigned to the instance of the object\s\s
+Flask - A web framework used in this case to design a billing web app  
+mysql connector python - An api used to make a connection to a database through python  
+flask_bcrypt - A version of bcrypt designed for use with the flask framework to hash passwords and  
+             - check hashed passwords  
+FPDF - A python module used to generate pdf reports  
+bill_object - The python code that I wrote and based this project around, it generates a pdf file  
+            - based on the attributes assigned to the instance of the object  
 
 ## How the app works
 ---
