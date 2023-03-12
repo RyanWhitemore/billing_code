@@ -40,7 +40,7 @@ you to a page designed for adding bill information to the database under your us
 ---
 If for some reason you are interested in testing the functionality of this code on your own machine
 here are some things you must do
-- Create a .env file with your database credentials as USER, PASSWORD, and DB_NAME
+- Create a .env file with your database credentials as USER, PASSWORD, SECRET_KEY, and DB_NAME
 - Create a mysql database with the following tables and rows (An entity relationship diagram is provided in the program files)
     - user table
         -  user_id
